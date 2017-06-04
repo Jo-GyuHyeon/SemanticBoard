@@ -179,17 +179,19 @@
             <a href="projects.html" class="item">Projects</a>
             <a href="listboard.jsp" class="active item">Help</a>
         </div>
-        <div class="ui inverted vertical masthead center aligned segment" >
+       <div class="pusher">
+            <div class="ui inverted vertical masthead center aligned segment" >
 
-            <div class="ui container">
-                <div class="ui large secondary inverted pointing menu">
-                    <a class="toc item">
-                        <i class="sidebar icon"></i>
-                    </a>
-                    <a href="index.html" class="item">Home</a>
-                    <a href="about.html" class="item">About</a>
-                    <a href="projects.html" class="item">Projects</a>
-                    <a href="listboard.jsp" class="active item">Help</a>
+                <div class="ui container">
+                    <div class="ui large secondary inverted pointing menu">
+                        <a class="toc item">
+                            <i class="sidebar icon"></i>
+                        </a>
+                        <a href="index.html" class="item">Home</a>
+                        <a href="about.html" class="item">About</a>
+                        <a href="projects.html" class="item">Projects</a>
+                        <a href="listboard.jsp" class="active item">Help</a>
+                    </div>
                 </div>
             </div>
             <%
@@ -241,10 +243,10 @@
                 <div class="field">
                     <input class="ui button" type="reset" value="다시 작성"/>
                     <input id="confirm" class="ui button" type="submit" value="수정">
-                    <input type="button" class="ui button" value="목록으로" onclick="location.href = './listboard.jsp?pageNum="<%=pageNum%>'">
+                    <input type="button" class="ui button" value="목록으로" onclick="location.href = './listboard.jsp?pageNum=<%=pageNum%>'">
                 </div>
             </form>
-
+       </div>
             <script>
                 var fileExtentionRange = '.zip .rar .tar .pdf .doc .docx .xls .xlsx .ppt .pptx .hwp .jpg .jpeg .png';
                 var MAX_SIZE = 30; // MB

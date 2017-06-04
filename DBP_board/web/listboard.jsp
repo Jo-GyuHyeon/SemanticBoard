@@ -151,23 +151,23 @@
     </HEAD>
     <body clas="pushable">
 
-            <!-- Following Menu -->
-            <div class="ui large top fixed hidden menu">
+        <!-- Following Menu -->
+        <div class="ui large top fixed hidden menu">
 
-                <div class="ui four item menu">
-                    <a href="index.html" class="item">Home</a>
-                    <a href="about.html" class="item">About</a>
-                    <a href="projects.html" class="item">Projects</a>
-                    <a href="listboard.jsp" class="active item">Help</a>
-                </div>
-            </div>
-            <!-- Sidebar Menu -->
-            <div class="ui vertical inverted sidebar menu left">
+            <div class="ui four item menu">
                 <a href="index.html" class="item">Home</a>
                 <a href="about.html" class="item">About</a>
                 <a href="projects.html" class="item">Projects</a>
                 <a href="listboard.jsp" class="active item">Help</a>
             </div>
+        </div>
+        <!-- Sidebar Menu -->
+        <div class="ui vertical inverted sidebar menu left">
+            <a href="index.html" class="item">Home</a>
+            <a href="about.html" class="item">About</a>
+            <a href="projects.html" class="item">Projects</a>
+            <a href="listboard.jsp" class="active item">Help</a>
+        </div>
 
         <div class="pusher">
             <div class="ui inverted vertical masthead center aligned segment" >
@@ -204,9 +204,6 @@
                 int startRow = endRow - (listSize - 1);
                 Paging paging = new Paging(lastRow, Integer.parseInt(pageNum), listSize, pageSize);
             %>
-            <!--script>
-              alert("total num : "+<%=lastRow%>+" page num : "+<%=pageNum%>+" endRow : "+<%=endRow%>+" startRow : "+<%=startRow%>);
-            </script-->
 
             <center style ="padding-top:50px"><font size='3' style ="padding-top:100px;"><h1> Q&A Board </h1></font></TD>
 
@@ -215,9 +212,9 @@
                     <thead>
                         <tr>
                             <th><center><b>번호</b></center></th>
-                    <th><center><b>글 제목</b></center></th>
+                            <th><center><b>글 제목</b></center></th>
                     <th><center><b>작성자</b></center></th>
-                    <th><center><b>작성일</b></center></th>
+                    <th ><center><b>작성일</b></center></th>
                     <th><center><b>조회</b></center></th>
                     </tr>
                     </thead>
@@ -238,11 +235,11 @@
                     %>
                     <tbody>
                         <tr>
-                            <td ><%=listnum%></td>
-                            <td ><a href="write_output.jsp?num=<%=listnum%>"><%=title%></a></td>
-                            <td ><a href="email.jsp?num=<%=listnum%>"><%=name%></a></td>
-                            <td ><%=writedate%></td>
-                            <td ><%=readcount%></td>
+                            <td ><center><%=listnum%></center></td>
+                            <td ><center><a href="write_output.jsp?num=<%=listnum%>"><%=title%></a></center></td>
+                            <td ><center><a href="email.jsp?num=<%=listnum%>"><%=name%></a></center></td>
+                            <td ><center><%=writedate%></center></td>
+                            <td ><center><%=readcount%></center></td>
                         </tr>
                     </tbody>
 

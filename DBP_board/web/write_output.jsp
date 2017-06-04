@@ -187,6 +187,8 @@
                 String writedate = model.getWritedate();
                 int readcount = model.getReadcount();
                 String filename = model.getFilename();
+                  Paging paging = new Paging();
+                String pageNum = paging.getPageNum(num);
             %>
             <h1 class="ui padded header"><center>Read Contents</center></h1>
             <div id="table" class="container padded">
@@ -223,7 +225,7 @@
 
                 <div id="right" class="ui buttons">
                     <button class="ui button" onclick="location.href = './reply.jsp?num=<%=num%>'">답변</button>
-                    <button class="ui button" onclick="location.href = './listboard.jsp'">목록보기</button>
+                    <button class="ui button" onclick="location.href = './listboard.jsp?pageNum=<%=pageNum%>'">목록보기</button>
                 </div>
             </div>
             <%

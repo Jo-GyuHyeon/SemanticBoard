@@ -165,7 +165,6 @@ public class ArticleDao {
         if (key == null || keyword == null) {
             strSQL = "SELECT count(*) FROM tblboard";
             ps = c.prepareStatement(strSQL);
-    
         } else {
             strSQL = "SELECT count(*) FROM tblboard WHERE " + key + " like ?";
             ps = c.prepareStatement(strSQL);
@@ -175,7 +174,7 @@ public class ArticleDao {
         while (rs.next()) {
             num = rs.getInt(1);
         }
-        System.out.println(num);
+
         rs.close();
         ps.close();
         c.close();
@@ -262,7 +261,7 @@ public class ArticleDao {
    
 
     public void update(Article ariticle) throws ClassNotFoundException, SQLException {
-        strSQL = "UPDATE tblboard SET name=?, pass=?, email=?, title=?, contents=?, writedate=? WHERE num=?";
+        strSQL = "UPDATE tblboard SET name=?, pass=?, email=?, title=?, contents=?, writedate=?, filenaem = ? WHERE num=?";
         Calendar dateIn = Calendar.getInstance();
         String indate = Integer.toString(dateIn.get(Calendar.YEAR)) + "-";
         indate = indate + Integer.toString(dateIn.get(Calendar.MONTH) + 1) + "-";
@@ -279,7 +278,8 @@ public class ArticleDao {
         ps.setString(4, ariticle.getTitle());
         ps.setString(5, ariticle.getContents());
         ps.setString(6, indate);
-        ps.setInt(7, ariticle.getNum());
+        ps.setString(7, ariticle.getFilename());
+        ps.setInt(8, ariticle.getNum());
         ps.executeUpdate();
 
         ps.close();

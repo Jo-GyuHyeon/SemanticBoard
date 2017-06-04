@@ -165,6 +165,7 @@
                 Paging paging = new Paging();
                 String pageNum = paging.getPageNum(num);
             %>
+           
 
             <form class="ui form" id="submit" action="delete_input.jsp" method="post">
                 <h2 class="ui dividing header"><center>비밀번호 확인</center></h2>

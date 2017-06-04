@@ -1,6 +1,6 @@
 <%@page import="bean.*"%>
 <%@page import="dao.*"%>
-<%@ page language="java" contentType="text/html; charset=euc-kr" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,13 +16,13 @@
         <script>
             function Check() {
                 if (Write.name.value.length < 1) {
-                    alert("ÀÛ¼ºÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+                    alert("ì‘ì„±ìë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
                     Write.name.focus();
                     return false;
                 }
 
                 if (Write.pass.value.length < 1) {
-                    alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+                    alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
                     Write.pass.focus();
                     return false;
                 }
@@ -30,21 +30,21 @@
                 if (Write.email.value.indexOf("@") + "" == "-1" ||
                         Write.email.value.indexOf(".") + "" == "-1" ||
                         Write.email.value == "") {
-                    alert("E-mailÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+                    alert("E-mailì„ ì…ë ¥í•˜ì„¸ìš”.");
                     Write.email.focus();
                     return false;
                 }
 
                 if (Write.title.value.length < 1) {
-                    alert("±ÛÁ¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+                    alert("ê¸€ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”.");
                     Write.write_title.focus();
                     return false;
                 }
 
                 if (Write.contents.value.length < 1) {
-                alert("±Û³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
-                Write.content.focus();
-                return false;
+                    alert("ê¸€ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”.");
+                    Write.content.focus();
+                    return false;
                 }
             }
         </script>
@@ -60,7 +60,7 @@
                 #writer, #password, #email{
                     width: 50%;
                 }
-                 .ui.form {
+                .ui.form {
                     padding-left: 250px;
                     padding-right:250px;
                 }
@@ -209,19 +209,19 @@
                 <input type="hidden" name="num" value="<%=num%>">
                 <h1 class="ui dividing header"><center>Answer</center></h1>
                 <div class="field">
-                    <label>* ÀÛ¼ºÀÚ</label>
+                    <label>* ì‘ì„±ì</label>
                     <input id="writer" type="text" name="name" placeholder="writer" />
                 </div>
                 <div class="field">
-                    <label>* ºñ¹Ğ¹øÈ£(°Ô½Ã¹° ¼öÁ¤ »èÁ¦½Ã ÇÊ¿äÇÕ´Ï´Ù.)</label>
+                    <label>* ë¹„ë°€ë²ˆí˜¸(ê²Œì‹œë¬¼ ìˆ˜ì • ì‚­ì œì‹œ í•„ìš”í•©ë‹ˆë‹¤.)</label>
                     <input id="password" type="password" name="pass" placeholder="password" />
                 </div>
                 <div class="field">
-                    <label>ÀÌ¸ŞÀÏ</label>
+                    <label>ì´ë©”ì¼</label>
                     <input id="email" type="email" name="email" placeholder="e-mail" />
                 </div>
                 <div class="field">
-                    <label>ÆÄÀÏ Ã·ºÎ(»çÁø, ¹®¼­ ÆÄÀÏ¸¸ ¾÷·Îµå °¡´ÉÇÕ´Ï´Ù.)</label>
+                    <label>íŒŒì¼ ì²¨ë¶€(ì‚¬ì§„, ë¬¸ì„œ íŒŒì¼ë§Œ ì—…ë¡œë“œ ê°€ëŠ¥í•©ë‹ˆë‹¤.)</label>
                     <div class="ui action input">
                         <input type="text" id="_attachmentName" placeholder="filename" readonly>
                         <label for="attachmentName" class="ui icon button btn-file">
@@ -231,17 +231,17 @@
                     </div>
                 </div>
                 <div class="field">
-                    <label>±Û Á¦¸ñ</label>
-                    <input type="text" name="title" placeholder="write title" value="[´äº¯]<%=title%>"/>
+                    <label>ê¸€ ì œëª©</label>
+                    <input type="text" name="title" placeholder="write title" value="[ë‹µë³€]<%=title%>"/>
                 </div>
                 <div class="field">
-                    <label>±Û ³»¿ë</label>
+                    <label>ê¸€ ë‚´ìš©</label>
                     <textarea name="contents" placeholder="write contents"></textarea>
                 </div>
                 <div class="field">
-                    <input class="ui button" type="reset" value="´Ù½Ã ÀÛ¼º"/>
-                    <input class="ui button" type="submit" value="µî·Ï">
-                    <input type="button" class="ui button" value="¸ñ·ÏÀ¸·Î" onclick="location.href = './listboard.jsp?pageNum="<%=pageNum%>'">
+                    <input class="ui button" type="reset" value="ë‹¤ì‹œ ì‘ì„±"/>
+                    <input class="ui button" type="submit" value="ë“±ë¡">
+                    <input type="button" class="ui button" value="ëª©ë¡ìœ¼ë¡œ" onclick="location.href = './listboard.jsp?pageNum=<%=pageNum%>'">
                 </div>
             </form>
 
@@ -272,14 +272,14 @@
                 var postfix = label.substr(label.lastIndexOf('.'));
                 if (fileExtentionRange.indexOf(postfix.toLowerCase()) > -1) {
                     if (size > 1024 * 1024 * MAX_SIZE) {
-                        alert('max size£º<strong>' + MAX_SIZE + '</strong> MB.');
+                        alert('max sizeï¼š<strong>' + MAX_SIZE + '</strong> MB.');
 
                         $('#attachmentName').removeAttr('name'); // cancel upload file.
                     } else {
                         $('#_attachmentName').val(label);
                     }
                 } else {
-                    alert('ÆÄÀÏ È®ÀåÀÚ´Â£º' + fileExtentionRange + '¸¸ ÀÔ·Â °¡´ÉÇÕ´Ï´Ù.');
+                    alert('íŒŒì¼ í™•ì¥ìëŠ”ï¼š' + fileExtentionRange + 'ë§Œ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.');
 
                     $('#attachmentName').removeAttr('name'); // cancel upload file.
                 }
