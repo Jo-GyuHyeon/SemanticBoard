@@ -62,6 +62,10 @@
                 {
                     width: 50%;
                 }
+                 .ui.form {
+                    padding-left: 250px;
+                    padding-right:250px;
+                }
             }
 
 
@@ -161,7 +165,7 @@
     </head>
 
     <body>
-        <!-- Following Menu -->
+    <!-- Following Menu -->
         <div class="ui large top fixed hidden menu">
 
             <div class="ui four item menu">
@@ -178,54 +182,55 @@
             <a href="projects.html" class="item">Projects</a>
             <a href="listboard.jsp" class="active item">Help</a>
         </div>
-        <div class="ui inverted vertical masthead center aligned segment" >
+        <div class="pusher">
+            <div class="ui inverted vertical masthead center aligned segment" >
 
-            <div class="ui container">
-                <div class="ui large secondary inverted pointing menu">
-                    <a class="toc item">
-                        <i class="sidebar icon"></i>
-                    </a>
-                    <a href="index.html" class="item">Home</a>
-                    <a href="about.html" class="item">About</a>
-                    <a href="projects.html" class="item">Projects</a>
-                    <a href="listboard.jsp" class="active item">Help</a>
+                <div class="ui container">
+                    <div class="ui large secondary inverted pointing menu">
+                        <a class="toc item">
+                            <i class="sidebar icon"></i>
+                        </a>
+                        <a href="index.html" class="item">Home</a>
+                        <a href="about.html" class="item">About</a>
+                        <a href="projects.html" class="item">Projects</a>
+                        <a href="listboard.jsp" class="active item">Help</a>
+                    </div>
                 </div>
             </div>
+                <%
+                    String num = request.getParameter("num");
+                    ArticleDao dao = new ArticleDaoFactory().articleDao();
+                    String email = dao.getMailInfo(num);
+                %>
 
-            <%
-                String num = request.getParameter("num");
-                ArticleDao dao = new ArticleDaoFactory().articleDao();
-                String email = dao.getMailInfo(num);
-            %>
+                <h1 class="ui dividing header"><center>Send Email</center></h1>
+           
 
-            <center>
-                <font size="3"><b> 이메일 발송하기 </b></font>
-            </center>
-
-            <form class="ui form" name="email" action="email_input.jsp" method="post" onsubmit="return Check()">
-                <input type="hidden" name="num" value="<%=num%>">
-                <div id="sender" class="field">
-                    <label>* 보내는 이</label>
-                    <input type="text" name="fromemail" placeholder="sender mail" />
-                </div>
-                <div id="receiver" class="field">
-                    <label>* 받는 이</label>
-                    <input type="text" name="fromemail" placeholder="receiver mail" value="<%=email%>/>
-                           </div>
-                           <div class="field">
-                           <label>메일 제목</label>
-                    <input type="text" name="title" placeholder="mail title" maxlength="50" />
-                </div>
-                <div class="field">
-                    <label>메일 내용</label>
-                    <textarea name="contents" placeholder="mail contents"></textarea>
-                </div>
-                <div class="field">
-                    <input class="ui button" type="reset" value="다시 작성" />
-                    <input class="ui button" type="submit" value="전송">
-                    <input type="button" class="ui button" value="목록으로" name="page" onclick="location.href = './listboard.jsp'">
-                </div>
-            </form>
+                <form class="ui form" name="email" action="email_input.jsp" method="post" onsubmit="return Check()">
+                    <input type="hidden" name="num" value="<%=num%>">
+                    <div id="sender" class="field">
+                        <label>* 보내는 이</label>
+                        <input type="text" name="fromemail" placeholder="sender mail" />
+                    </div>
+                    <div id="receiver" class="field">
+                        <label>* 받는 이</label>
+                        <input type="text" name="fromemail" placeholder="receiver mail" value="<%=email%>/>
+                               </div>
+                               <div class="field">
+                               <label>메일 제목</label>
+                        <input type="text" name="title" placeholder="mail title" maxlength="50" />
+                    </div>
+                    <div class="field">
+                        <label>메일 내용</label>
+                        <textarea name="contents" placeholder="mail contents"></textarea>
+                    </div>
+                    <div class="field">
+                        <input class="ui button" type="reset" value="다시 작성" />
+                        <input class="ui button" type="submit" value="전송">
+                        <input type="button" class="ui button" value="목록으로" name="page" onclick="location.href = './listboard.jsp'">
+                    </div>
+                </form>
+            </div>
     </body>
 
 </html>

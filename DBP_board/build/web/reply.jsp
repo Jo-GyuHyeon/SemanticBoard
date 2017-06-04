@@ -60,6 +60,10 @@
                 #writer, #password, #email{
                     width: 50%;
                 }
+                 .ui.form {
+                    padding-left: 250px;
+                    padding-right:250px;
+                }
             }
 
 
@@ -203,7 +207,7 @@
             %>
             <form class="ui form" name="Write" action="reply_input.jsp" method="post" enctype="multipart/form-data" onsubmit="return Check()">
                 <input type="hidden" name="num" value="<%=num%>">
-                <h1 class="ui dividing header"><center>답변하기</center></h1>
+                <h1 class="ui dividing header"><center>Answer</center></h1>
                 <div class="field">
                     <label>* 작성자</label>
                     <input id="writer" type="text" name="name" placeholder="writer" />
