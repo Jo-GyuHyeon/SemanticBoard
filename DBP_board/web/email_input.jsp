@@ -4,13 +4,12 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <% 
-String from   = request.getParameter("fromemail");  
 String to   = request.getParameter("toemail"); 
 String title  = request.getParameter("title");
 String contents  = request.getParameter("contents");
 
 ArticleDao dao = new ArticleDaoFactory().articleDao();
-dao.sendMail(from, to, title, contents);
+dao.sendMail(to, title, contents);
 
 response.sendRedirect("listboard.jsp"); 
 %>

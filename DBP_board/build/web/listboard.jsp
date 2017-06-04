@@ -15,139 +15,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
         <script src="semantic/semantic.js"></script>
+        <script src="js/header.js"></script>
+        <script src="js/listboard.js"></script>
         <link rel="stylesheet" type="text/css" href="semantic/semantic.css" />
-        <TITLE> 게시판 </TITLE>
-        <SCRIPT language="JavaScript">
-            function Check()
-            {
-                if (Form.keyword.value.length < 1) {
-                    alert("검색어를 입력하세요.");
-                    Form.keyword.focus();
-                    return false;
-                }
-            }
-            function boardWrite(pageNum)
-            {
-                //  alert(pageNum);
-                location.href = "./write.jsp?pageNum=" + pageNum;
-            }
-        </SCRIPT>
-
+        <link rel="stylesheet" type="text/css" href="css/header.css" />
+        <link rel="stylesheet" type="text/css" href="css/footer.css" />
+        <TITLE> ListBoard | TeamDG </TITLE>
         <META http-equiv="Content-Type" content="text/html; charset=euc-kr">
-        <style type='text/css'>
-
-            .hidden.menu {
-                display: none;
-            }
-
-            .masthead.segment {
-                padding: 1em 0em;
-            }
-
-            .masthead .logo.item img {
-                margin-right: 1em;
-            }
-
-            .masthead .ui.menu .ui.button {
-                margin-left: 0.5em;
-            }
-
-            .masthead h1.ui.header {
-                margin-top: 3em;
-                margin-bottom: 0em;
-                font-size: 4em;
-                font-weight: normal;
-            }
-
-            .masthead h2 {
-                font-size: 1.7em;
-                font-weight: normal;
-            }
-
-            .ui.vertical.stripe {
-                padding: 8em 0em;
-            }
-
-            .ui.vertical.stripe h3 {
-                font-size: 2em;
-            }
-
-            .ui.vertical.stripe .button+h3,
-            .ui.vertical.stripe p+h3 {
-                margin-top: 3em;
-            }
-
-            .ui.vertical.stripe .floated.image {
-                clear: both;
-            }
-
-            .ui.vertical.stripe p {
-                font-size: 1.33em;
-            }
-
-            .ui.vertical.stripe .horizontal.divider {
-                margin: 3em 0em;
-            }
-
-            .quote.stripe.segment {
-                padding: 0em;
-            }
-
-            .quote.stripe.segment .grid .column {
-                padding-top: 5em;
-                padding-bottom: 5em;
-            }
-
-            .footer.segment {
-                padding: 5em 0em;
-            }
-
-            .secondary.pointing.menu .toc.item {
-                display: none;
-            }
-
-            @media only screen and (max-width: 700px) {
-                .ui.fixed.menu {}
-                .secondary.pointing.menu .item,
-                .secondary.pointing.menu .menu {
-                    display: none;
-                }
-                .secondary.pointing.menu .toc.item {
-                    display: block;
-                }
-                .masthead.segment {}
-                .masthead h1.ui.header {
-                    font-size: 2em;
-                    margin-top: 1.5em;
-                }
-                .masthead h2 {
-                    margin-top: 0.5em;
-                    font-size: 1.5em;
-                }
-            }
-        </style>
-        <script>
-            $(document)
-                    .ready(function () {
-
-                        // fix menu when passed
-                        $('.masthead')
-                                .visibility({
-                                    once: false,
-                                    onBottomPassed: function () {
-                                        $('.fixed.menu').transition('fade in');
-                                    },
-                                    onBottomPassedReverse: function () {
-                                        $('.fixed.menu').transition('fade out');
-                                    }
-                                });
-
-                        // create sidebar and attach to menu open
-                        $('.ui.sidebar')
-                                .sidebar('attach events', '.toc.item');
-
-                    });
-        </script>
     </HEAD>
     <body clas="pushable">
 
@@ -195,7 +69,7 @@
 
                 int listSize = 10;
                 int pageSize = 10;
-                //  int currentPage = Integer.parseInt(pageNum);
+                int currentPage = Integer.parseInt(pageNum);
                 int lastRow = 0;
                 List list = null;
                 ArticleDao dao = new ArticleDaoFactory().articleDao();
@@ -212,7 +86,7 @@
                     <thead>
                         <tr>
                             <th><center><b>번호</b></center></th>
-                            <th><center><b>글 제목</b></center></th>
+                    <th><center><b>글 제목</b></center></th>
                     <th><center><b>작성자</b></center></th>
                     <th ><center><b>작성일</b></center></th>
                     <th><center><b>조회</b></center></th>
@@ -236,11 +110,11 @@
                     <tbody>
                         <tr>
                             <td ><center><%=listnum%></center></td>
-                            <td ><center><a href="write_output.jsp?num=<%=listnum%>"><%=title%></a></center></td>
-                            <td ><center><a href="email.jsp?num=<%=listnum%>"><%=name%></a></center></td>
-                            <td ><center><%=writedate%></center></td>
-                            <td ><center><%=readcount%></center></td>
-                        </tr>
+                    <td ><center><a href="write_output.jsp?num=<%=listnum%>"><%=title%></a></center></td>
+                    <td ><center><a href="email.jsp?num=<%=listnum%>"><%=name%></a></center></td>
+                    <td ><center><%=writedate%></center></td>
+                    <td ><center><%=readcount%></center></td>
+                    </tr>
                     </tbody>
 
 
@@ -263,10 +137,15 @@
                                     <%
                                         }
                                         while (paging.getStartPage() <= paging.getEndPage()) {
+                                            if (paging.getStartPage() == currentPage) {
+                                    %>
+                                    <a class="item" href="./listboard.jsp?pageNum=<%=paging.getStartPage()%>">Now</a>
+                                    <%
+                                    } else if (paging.getStartPage() != currentPage) {
                                     %>
                                     <a class="item" href="./listboard.jsp?pageNum=<%=paging.getStartPage()%>"><%=paging.getStartPage()%></a>
                                     <%
-
+                                            }
                                             paging.setStartPage(paging.getStartPage() + 1);
                                         }
                                         if (paging.getEndPage() < paging.getTotalPages()) {

@@ -9,159 +9,16 @@
 <html>
 
     <head>
-        <title> 게시판 </title>
+        <title> email | TeamDG </title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
         <script src="semantic/semantic.js"></script>
+        <script src="js/email.js"></script>
         <link rel="stylesheet" type="text/css" href="semantic/semantic.css" />
-        <script>
-            function Check() {
-                if (email.toemail.value.indexOf("@") + "" == "-1" ||
-                        email.toemail.value.indexOf(".") + "" == "-1" ||
-                        email.toemail.value == "") {
-                    alert("E-mail을 입력하세요.");
-                    email.toemail.focus();
-                    return false;
-                }
-
-                if (email.title.value.length < 1) {
-                    alert("글제목을 입력하세요.");
-                    email.title.focus();
-                    return false;
-                }
-
-                if (email.contents.value.length < 1) {
-                    alert("글내용을 입력하세요.");
-                    email.contents.focus();
-                    return false;
-                }
-
-                email.submit();
-            }
-
-
-            function list() {
-                location.href = "listboard.jsp";
-            }
-        </script>
-        <style>
-            div.field {
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-
-            form {
-                margin-top: 30px;
-            }
-
-            @media(min-width: 720px) {
-                #sender,
-                #receiver
-                {
-                    width: 50%;
-                }
-                 .ui.form {
-                    padding-left: 250px;
-                    padding-right:250px;
-                }
-            }
-
-
-            .hidden.menu {
-                display: none;
-            }
-
-            .masthead.segment {
-                padding: 1em 0em;
-            }
-
-            .masthead .logo.item img {
-                margin-right: 1em;
-            }
-
-            .masthead .ui.menu .ui.button {
-                margin-left: 0.5em;
-            }
-
-            .masthead h1.ui.header {
-                margin-top: 3em;
-                margin-bottom: 0em;
-                font-size: 4em;
-                font-weight: normal;
-            }
-
-            .masthead h2 {
-                font-size: 1.7em;
-                font-weight: normal;
-            }
-
-            .ui.vertical.stripe {
-                padding: 8em 0em;
-            }
-
-            .ui.vertical.stripe h3 {
-                font-size: 2em;
-            }
-
-            .ui.vertical.stripe .button+h3,
-            .ui.vertical.stripe p+h3 {
-                margin-top: 3em;
-            }
-
-            .ui.vertical.stripe .floated.image {
-                clear: both;
-            }
-
-            .ui.vertical.stripe p {
-                font-size: 1.33em;
-            }
-
-            .ui.vertical.stripe .horizontal.divider {
-                margin: 3em 0em;
-            }
-
-            .quote.stripe.segment {
-                padding: 0em;
-            }
-
-            .quote.stripe.segment .grid .column {
-                padding-top: 5em;
-                padding-bottom: 5em;
-            }
-
-            .footer.segment {
-                padding: 5em 0em;
-            }
-
-            .secondary.pointing.menu .toc.item {
-                display: none;
-            }
-
-        </style>
-        <script>
-            $(document)
-                    .ready(function () {
-
-                        // fix menu when passed
-                        $('.masthead')
-                                .visibility({
-                                    once: false,
-                                    onBottomPassed: function () {
-                                        $('.fixed.menu').transition('fade in');
-                                    },
-                                    onBottomPassedReverse: function () {
-                                        $('.fixed.menu').transition('fade out');
-                                    }
-                                });
-
-                        // create sidebar and attach to menu open
-                        $('.ui.sidebar')
-                                .sidebar('attach events', '.toc.item');
-
-                    });
-        </script>
+        <link rel="stylesheet" type="text/css" href="css/header.css" />
+        <link rel="stylesheet" type="text/css" href="css/email.css" />
     </head>
 
     <body>
@@ -208,13 +65,9 @@
 
                 <form class="ui form" name="email" action="email_input.jsp" method="post" onsubmit="return Check()">
                     <input type="hidden" name="num" value="<%=num%>">
-                    <div id="sender" class="field">
-                        <label>* 보내는 이</label>
-                        <input type="text" name="fromemail" placeholder="sender mail" />
-                    </div>
                     <div id="receiver" class="field">
                         <label>* 받는 이</label>
-                        <input type="text" name="fromemail" placeholder="receiver mail" value="<%=email%>/>
+                        <input type="text" name="toemail" placeholder="receiver mail" value="<%=email%>/>
                                </div>
                                <div class="field">
                                <label>메일 제목</label>

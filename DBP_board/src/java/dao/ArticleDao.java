@@ -261,7 +261,7 @@ public class ArticleDao {
    
 
     public void update(Article ariticle) throws ClassNotFoundException, SQLException {
-        strSQL = "UPDATE tblboard SET name=?, pass=?, email=?, title=?, contents=?, writedate=?, filenaem = ? WHERE num=?";
+        strSQL = "UPDATE tblboard SET name=?, pass=?, email=?, title=?, contents=?, writedate=?, filename = ? WHERE num=?";
         Calendar dateIn = Calendar.getInstance();
         String indate = Integer.toString(dateIn.get(Calendar.YEAR)) + "-";
         indate = indate + Integer.toString(dateIn.get(Calendar.MONTH) + 1) + "-";
@@ -361,9 +361,9 @@ public class ArticleDao {
         String originFileName = "";
         
         try{
-            uploadFileName = multipartRequest.getFilesystemName("filename");
-            originFileName = multipartRequest.getOriginalFileName("filename");
-            File file = multipartRequest.getFile("filename");
+            uploadFileName = multipartRequest.getFilesystemName("attachmentName");
+            originFileName = multipartRequest.getOriginalFileName("attachmentName");
+            File file = multipartRequest.getFile("attachmentName");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -392,7 +392,7 @@ public class ArticleDao {
         return mail;
     }
     
-    public void sendMail(String from, String to, String title, String contents){
+    public void sendMail(String to, String title, String contents){
         try{
             Properties props = new Properties();
             props.put("mail.smtp.starttls.enable", "true");
@@ -403,8 +403,8 @@ public class ArticleDao {
             Authenticator auth = new GoogleMailAuthentication();
             Session session= Session.getDefaultInstance(props, auth);
 
-            Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(from));
+            MimeMessage msg = new MimeMessage(session);
+            
             InternetAddress[] address = {new InternetAddress(to)};
 
             msg.setRecipients(Message.RecipientType.TO, address);

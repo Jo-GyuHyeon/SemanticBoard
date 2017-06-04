@@ -1,0 +1,12 @@
+div.field {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+form {
+    margin-top: 30px;
+}
+@media(min-width: 720px){
+    #writer, #password, #email{
+        width: 50%;
+    }
+}
