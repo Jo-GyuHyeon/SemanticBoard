@@ -14,7 +14,6 @@
     Article ariticle = new Article();
     ArticleDao dao = new ArticleDaoFactory().articleDao();
     String filename = dao.controlFileUpload(multipartRequest);
-    out.println(filename);
     ariticle.setName(multipartRequest.getParameter("name"));
     ariticle.setPass(multipartRequest.getParameter("pass"));
     ariticle.setEmail(multipartRequest.getParameter("email"));

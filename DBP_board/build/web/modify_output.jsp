@@ -24,7 +24,7 @@ ariticle.setTitle(multipartRequest.getParameter("title"));
 ariticle.setContents(multipartRequest.getParameter("contents"));
 ariticle.setFilename(filename);
 
-dao.reply(ariticle);
+dao.update(ariticle);
 
 response.sendRedirect("./listboard.jsp"); 
 %>

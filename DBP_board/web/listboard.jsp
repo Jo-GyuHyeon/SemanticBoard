@@ -204,6 +204,9 @@
                 int startRow = endRow - (listSize - 1);
                 Paging paging = new Paging(lastRow, Integer.parseInt(pageNum), listSize, pageSize);
             %>
+            <!--script>
+              alert("total num : "+<%=lastRow%>+" page num : "+<%=pageNum%>+" endRow : "+<%=endRow%>+" startRow : "+<%=startRow%>);
+            </script-->
 
             <center style ="padding-top:50px"><font size='3' style ="padding-top:100px;"><h1> Q&A Board </h1></font></TD>
 

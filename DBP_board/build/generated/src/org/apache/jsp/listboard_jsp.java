@@ -254,6 +254,17 @@ public final class listboard_jsp extends org.apache.jasper.runtime.HttpJspBase
                 Paging paging = new Paging(lastRow, Integer.parseInt(pageNum), listSize, pageSize);
             
       out.write("\r\n");
+      out.write("            <!--script>\r\n");
+      out.write("              alert(\"total num : \"+");
+      out.print(lastRow);
+      out.write("+\" page num : \"+");
+      out.print(pageNum);
+      out.write("+\" endRow : \"+");
+      out.print(endRow);
+      out.write("+\" startRow : \"+");
+      out.print(startRow);
+      out.write(");\r\n");
+      out.write("            </script-->\r\n");
       out.write("\r\n");
       out.write("            <center style =\"padding-top:50px\"><font size='3' style =\"padding-top:100px;\"><h1> Q&A Board </h1></font></TD>\r\n");
       out.write("\r\n");
@@ -328,7 +339,7 @@ public final class listboard_jsp extends org.apache.jasper.runtime.HttpJspBase
 
                                         }
 
-                                        if (paging.getStartPage() > 1) {
+                                        if (paging.getStartPage() > 5) {
                                     
       out.write("\r\n");
       out.write("                                    <a class=\"icon item\" href=\"./listboard.jsp?pageNum=");

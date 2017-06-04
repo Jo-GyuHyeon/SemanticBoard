@@ -165,6 +165,7 @@ public class ArticleDao {
         if (key == null || keyword == null) {
             strSQL = "SELECT count(*) FROM tblboard";
             ps = c.prepareStatement(strSQL);
+    
         } else {
             strSQL = "SELECT count(*) FROM tblboard WHERE " + key + " like ?";
             ps = c.prepareStatement(strSQL);
@@ -174,7 +175,7 @@ public class ArticleDao {
         while (rs.next()) {
             num = rs.getInt(1);
         }
-
+        System.out.println(num);
         rs.close();
         ps.close();
         c.close();
@@ -240,8 +241,8 @@ public class ArticleDao {
         pstmt1 = c.prepareStatement(strSQL);
         pstmt1.executeUpdate();
 
-        strSQL = "INSERT INTO tblboard(num, name, pass, email, title, contents, writedate, readcount)";
-        strSQL = strSQL + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        strSQL = "INSERT INTO tblboard(num, name, pass, email, title, contents, writedate, readcount, filename)";
+        strSQL = strSQL + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         pstmt2 = c.prepareStatement(strSQL);
         pstmt2.setInt(1, ariticle.getNum());
