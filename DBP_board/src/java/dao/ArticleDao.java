@@ -26,13 +26,14 @@ public class ArticleDao {
     private List list = null;
     private String strSQL = null;
 
+    //의존성 주입 구현
     public ArticleDao(ConnectionMaker simpleConnectionMaker) {
         this.connectionMaker = simpleConnectionMaker;
     }
 
     public ArticleDao() {
     }
-
+    //list에 출력할 데이터 출력
     public List getDBAll(int startRow, int endRow) throws ClassNotFoundException, SQLException {
         list = new ArrayList();
         c = this.connectionMaker.makeConnection();
@@ -60,7 +61,7 @@ public class ArticleDao {
         return list;
 
     }
-
+    //검색 시 출력될 리스트 값 가져오기
     public List getKeyDBAll(String key, String keyword) throws ClassNotFoundException, SQLException {
         strSQL = "SELECT * FROM tblboard WHERE " + key + " like ? ORDER BY num DESC";
         list = new ArrayList();
@@ -87,7 +88,7 @@ public class ArticleDao {
         return list;
 
     }
-
+    //select태그 사용하는 검색 결과 리스트 출력
     public List getSelectDBAll(int startRow, int endRow, String key, String keyword) throws ClassNotFoundException, SQLException {
         list = new ArrayList();
         c = this.connectionMaker.makeConnection();
@@ -121,7 +122,7 @@ public class ArticleDao {
         return list;
 
     }
-
+    //게시물 전체 개수
     public int getLastRow() throws ClassNotFoundException, SQLException {
         int num = 0;
         strSQL = "SELECT * FROM tblboard";
@@ -138,7 +139,7 @@ public class ArticleDao {
 
         return num;
     }
-
+    //검색 시 게시물 개수
     public int keyLastRow(String key, String keyword) throws ClassNotFoundException, SQLException {
         int num = 0;
         strSQL = null;
@@ -157,7 +158,7 @@ public class ArticleDao {
 
         return num;
     }
-
+    //키 값 유무에 따른 데이터 출력
     public int getSelectLastRow(String key, String keyword) throws ClassNotFoundException, SQLException {
         int num = 0;
         strSQL = null;
@@ -181,7 +182,7 @@ public class ArticleDao {
 
         return num;
     }
-
+    //데이터 DB저장
     public void write(Article ariticle) throws ClassNotFoundException, SQLException {
 
         Calendar dateIn = Calendar.getInstance();
@@ -222,7 +223,7 @@ public class ArticleDao {
         ps.close();
         c.close();
     }
-
+    //답변 내용 db저장
     public void reply(Article ariticle) throws ClassNotFoundException, SQLException {
 
         Calendar dateIn = Calendar.getInstance();
@@ -258,8 +259,7 @@ public class ArticleDao {
         pstmt2.close();
         c.close();
     }
-   
-
+    //데이터 수정 시 내용 업데이트
     public void update(Article ariticle) throws ClassNotFoundException, SQLException {
         strSQL = "UPDATE tblboard SET name=?, pass=?, email=?, title=?, contents=?, writedate=?, filename = ? WHERE num=?";
         Calendar dateIn = Calendar.getInstance();
@@ -285,7 +285,7 @@ public class ArticleDao {
         ps.close();
         c.close();
     }
-
+    //해당 게시글 객체 가져오기
     public Article getArticle(String num) throws ClassNotFoundException, SQLException {
         strSQL = "SELECT * FROM tblboard WHERE num = ?";
         c = this.connectionMaker.makeConnection();
@@ -308,7 +308,7 @@ public class ArticleDao {
         c.close();
         return ariticle;
     }
-
+    //조회 수 올리기
     public void update_readcount(String num) throws ClassNotFoundException, SQLException {
         strSQL = "UPDATE tblboard SET readcount=readcount+1 WHERE num = ?";
         c = this.connectionMaker.makeConnection();
@@ -320,7 +320,7 @@ public class ArticleDao {
         ps.close();
         c.close();
     }
-
+    //게시글 비밀번호 가져오기
     public String getPass(String num) throws ClassNotFoundException, SQLException {
         strSQL = "SELECT pass FROM tblboard WHERE num = ?";
         String password = null;
@@ -338,7 +338,7 @@ public class ArticleDao {
         c.close();
         return password;
     }
-
+    //데이터 삭제 및 답글 달기시 기존 글 삭제
     public void delete(String num) throws ClassNotFoundException, SQLException {
         c = this.connectionMaker.makeConnection();
         strSQL = "DELETE From tblboard WHERE num=?";
@@ -354,7 +354,7 @@ public class ArticleDao {
         ps.close();
         c.close();
     }
-    
+    //업로드 파일명 저장 메소드
     public String controlFileUpload(MultipartRequest multipartRequest){
         
         String uploadFileName = "";
@@ -369,6 +369,7 @@ public class ArticleDao {
         }
         return uploadFileName;
     }
+    //DB에서 파일명 가져오기
     public String getFilename(String num) throws ClassNotFoundException, SQLException{
         c = this.connectionMaker.makeConnection();
         strSQL = "select filename from tblboard where num = ?";
@@ -379,7 +380,7 @@ public class ArticleDao {
         String filename = rs.getString("filename");
         return filename;
     }
-    
+    //DB에서 메일 정보 가져오기
     public String getMailInfo(String num) throws ClassNotFoundException, SQLException{
         c = this.connectionMaker.makeConnection();
         strSQL = "SELECT email, title, contents FROM tblboard WHERE num = ?";
@@ -391,7 +392,7 @@ public class ArticleDao {
         
         return mail;
     }
-    
+    //메일 전송 메소드
     public void sendMail(String to, String title, String contents){
         try{
             Properties props = new Properties();

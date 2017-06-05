@@ -1,7 +1,12 @@
 <%@page import="bean.Paging"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
-
+<%--
+Document : modify_pass.jsp
+Content : 게시글 수정 비밀번호 form 
+Created on : 2016. 5. 29, 오후 5:28:07
+Author : Team_dongguk(하헌우, 황호찬, 조규현)
+--%>
 <!DOCTYPE html>
 <html>
 
@@ -55,8 +60,8 @@
             </div>
             <%
                 String num = request.getParameter("num");
-                Paging paging = new Paging();
-                String pageNum = paging.getPageNum(num);
+                Paging paging = new Paging();                   //Paging객체 생성   
+                String pageNum = paging.getPageNum(num);        //paging 객체를 이용하여 해당 페이지 번호를 구한다.
             %>
 
             <form class="ui form" id="submit" action="modify_input.jsp" method="post">

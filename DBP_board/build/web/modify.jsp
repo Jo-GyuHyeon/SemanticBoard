@@ -5,6 +5,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
+<%--
+Document : modify.jsp
+Content : 게시물 수정 form
+Created on : 2016. 5. 29, 오후 5:28:07
+Author : Team_dongguk(하헌우, 황호찬, 조규현)
+--%>
+
 <html>
     <head>
         <title> Modify | TeamDG </title>
@@ -39,7 +46,7 @@
             <a href="projects.html" class="item">Projects</a>
             <a href="listboard.jsp" class="active item">Help</a>
         </div>
-       <div class="pusher">
+        <div class="pusher">
             <div class="ui inverted vertical masthead center aligned segment" >
 
                 <div class="ui container">
@@ -57,15 +64,15 @@
             <%
                 String num = request.getParameter("num");
 
-                ArticleDao dao = new ArticleDaoFactory().articleDao();
+                ArticleDao dao = new ArticleDaoFactory().articleDao();  //ArticleDaoFactory를 이용하여 dao 객체 생성한다.
                 Article model = dao.getArticle(num);
 
                 String name = model.getName();
                 String email = model.getEmail();
                 String title = model.getTitle();
                 String contents = model.getContents().trim();
-                Paging paging = new Paging();
-                String pageNum = paging.getPageNum(num);
+                Paging paging = new Paging();                   //Paging 객체를 생성
+                String pageNum = paging.getPageNum(num);        //Paging 객체를 생성하여 현재 페이지를 구하는데 이용한다.
             %>
             <form class="ui form" name="Write" action="modify_output.jsp" method="post" enctype="multipart/form-data" onsubmit="return Check()">
                 <input type="hidden" name="num" value="<%=num%>">
@@ -106,8 +113,8 @@
                     <input type="button" class="ui button" value="목록으로" onclick="location.href = './listboard.jsp?pageNum=<%=pageNum%>'">
                 </div>
             </form>
-       </div>
-            <script src="js/fileupload.js"></script>
+        </div>
+        <script src="js/fileupload.js"></script>
     </body>
 
 </html>

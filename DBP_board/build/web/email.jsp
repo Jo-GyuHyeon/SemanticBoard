@@ -5,6 +5,13 @@
 <%@ page import = "java.sql.*, java.util.*" %>
 <% request.setCharacterEncoding("euc-kr"); %>
 
+<%--
+Document : email.jsp
+Content : 이메일 form 
+Created on : 2016. 5. 29, 오후 5:28:07
+Author : Team_dongguk(하헌우, 황호찬, 조규현)
+--%>
+
 <!DOCTYPE html>
 <html>
 

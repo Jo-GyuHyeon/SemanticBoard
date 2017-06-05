@@ -5,7 +5,7 @@ import javax.mail.*;
 public class GoogleMailAuthentication extends Authenticator{
     PasswordAuthentication pa;
     
-    public GoogleMailAuthentication(){
+    public GoogleMailAuthentication(){      //구글이메일 인증 메소드
          
         String id = "ghckss93@gmail.com";       // 구글 ID
         String pw = "ninety93@@";          // 구글 비밀번호

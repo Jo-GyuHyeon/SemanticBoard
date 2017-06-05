@@ -5,9 +5,15 @@
 <%@ page import = "bean.*" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 
+<%--
+Document : listboard.jsp
+Content : 게시판 리스트
+Created on : 2016. 5. 29, 오후 5:28:07
+Author : Team_dongguk(하헌우, 황호찬, 조규현)
+--%>
+
 <!doctype html>
 <html>
-
     <head>
         <!-- Standard Meta -->
         <meta charset="utf-8">
@@ -72,11 +78,11 @@
                 int currentPage = Integer.parseInt(pageNum);
                 int lastRow = 0;
                 List list = null;
-                ArticleDao dao = new ArticleDaoFactory().articleDao();
+                ArticleDao dao = new ArticleDaoFactory().articleDao();  //ArticleDaoFactory를 이용하여 dao 객체 생성한다.
                 lastRow = dao.getSelectLastRow(key, keyword);
-                int endRow = lastRow - ((Integer.parseInt(pageNum) - 1) * listSize);
-                int startRow = endRow - (listSize - 1);
-                Paging paging = new Paging(lastRow, Integer.parseInt(pageNum), listSize, pageSize);
+                int endRow = lastRow - ((Integer.parseInt(pageNum) - 1) * listSize);    //최신 정보순으로 출력하기 위하여 endRow 계산식
+                int startRow = endRow - (listSize - 1);                                 //최신 정보순으로 출력하기 위하여 starRow 계산식
+                Paging paging = new Paging(lastRow, Integer.parseInt(pageNum), listSize, pageSize); //Paging 객체를 생성자로 생성하여 페이징 기법 이용한다.
             %>
 
             <center style ="padding-top:50px"><font size='3' style ="padding-top:100px;"><h1> Q&A Board </h1></font></TD>
@@ -94,7 +100,7 @@
                     </thead>
 
                     <%            if (lastRow > 0) {
-                            list = dao.getSelectDBAll(startRow, endRow, key, keyword);
+                            list = dao.getSelectDBAll(startRow, endRow, key, keyword);      //key값에 의한 keyword의 유무 따라 db로 부터 게시글에 대한 정보를 list형식으로 가져온다
 
                             Iterator it = list.iterator();
                             Article bean;
@@ -136,12 +142,12 @@
                                     <a class="icon item" href="./listboard.jsp?pageNum=<%=paging.getStartPage() - 5%>">[이전]</a>
                                     <%
                                         }
-                                        while (paging.getStartPage() <= paging.getEndPage()) {
-                                            if (paging.getStartPage() == currentPage) {
+                                        while (paging.getStartPage() <= paging.getEndPage()) {  //페이징 기법에 의하여 Page Size 만큼 윈도우에 페이지 번호가 출력된다.
+                                            if (paging.getStartPage() == currentPage) {         //현재 페이지를 찾는다면 숫자대신 Now로 표현한다.
                                     %>
                                     <a class="item" href="./listboard.jsp?pageNum=<%=paging.getStartPage()%>">Now</a>
                                     <%
-                                    } else if (paging.getStartPage() != currentPage) {
+                                    } else if (paging.getStartPage() != currentPage) {          //현재 페이지가 아니라면  숫자로 표현한다.
                                     %>
                                     <a class="item" href="./listboard.jsp?pageNum=<%=paging.getStartPage()%>"><%=paging.getStartPage()%></a>
                                     <%

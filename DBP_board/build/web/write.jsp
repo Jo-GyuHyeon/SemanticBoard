@@ -2,6 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
+<%--
+Document : write.jsp
+Content : 게시글 작성 form 
+Created on : 2016. 5. 29, 오후 5:28:07
+Author : Team_dongguk(하헌우, 황호찬, 조규현)
+--%>
 <html>
     <head>
         <title> QnA Apply | TeamDG </title>

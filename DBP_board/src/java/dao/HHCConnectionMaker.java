@@ -13,7 +13,7 @@ import java.sql.SQLException;
  *
  * @author HHC
  */
-public class HHCConnectionMaker implements ConnectionMaker{
+public class HHCConnectionMaker implements ConnectionMaker{     ////황호찬의 DB Connectio 정보
     public Connection makeConnection() throws ClassNotFoundException,
 			SQLException {
 		Class.forName("oracle.jdbc.driver.OracleDriver");

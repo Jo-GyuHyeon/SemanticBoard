@@ -3,6 +3,14 @@
 <%@page import="dao.*"%>
 <%@page import="bean.*"%>
 <% request.setCharacterEncoding("UTF-8"); %>
+
+<%--
+Document : write_output.jsp
+Content : 게시글 확인 
+Created on : 2016. 5. 29, 오후 5:28:07
+Author : Team_dongguk(하헌우, 황호찬, 조규현)
+--%>
+
 <!DOCTYPE html>
 <html>
 
@@ -58,8 +66,8 @@
             <%
                 String num = request.getParameter("num");
 
-                ArticleDao dao = new ArticleDaoFactory().articleDao();
-                Article model = dao.getArticle(num);
+                ArticleDao dao = new ArticleDaoFactory().articleDao();      //ArticleDaoFactory를 이용하여 dao 객체 생성한다.
+                Article model = dao.getArticle(num);        //Article이라는 bean 객체 생성하여 게시글 번호에 해당하는 게시글을 가져온다.
                 String name = model.getName();
                 String title = model.getTitle();
                 String contents = model.getContents().trim();
@@ -108,7 +116,7 @@
                 </div>
             </div>
             <%
-                dao.update_readcount(num);
+                dao.update_readcount(num);      //dao 객체를 이용하여 게시글 조회수를 update 한다.
             %>
         </div>
     </body>

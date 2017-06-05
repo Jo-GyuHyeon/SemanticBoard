@@ -2,8 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
+<%--
+Document : delete_pass.jsp
+Content : 게시물 삭제 비밀번호 확인
+Created on : 2016. 5. 29, 오후 5:28:07
+Author : Team_dongguk(하헌우, 황호찬, 조규현)
+--%>
 <html>
-
     <head>
         <title> Delete | TeamDG </title>
 
@@ -16,7 +21,7 @@
         <link rel="stylesheet" type="text/css" href="css/header.css" />
         <link rel="stylesheet" type="text/css" href="css/delete_pass.css" />
         <script src="js/header.js"></script>
-        
+
     </head>
 
     <body>
@@ -56,10 +61,10 @@
 
             <%
                 String num = request.getParameter("num");
-                Paging paging = new Paging();
-                String pageNum = paging.getPageNum(num);
+                Paging paging = new Paging();   //해당 페이지를 구하기 위해 Paging 객체를 생성한다.
+                String pageNum = paging.getPageNum(num);    //paging 기법에 의하여 해당 페이지 번호를 pageNum에 저장한다.
             %>
-           
+
 
             <form class="ui form" id="submit" action="delete_input.jsp" method="post">
                 <h2 class="ui dividing header"><center>비밀번호 확인</center></h2>

@@ -2,6 +2,12 @@
 <%@page import="dao.*"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" %>
 <!DOCTYPE html>
+<%--
+Document : reply.jsp
+Content : 게시글 답변 작성 form
+Created on : 2016. 5. 29, 오후 5:28:07
+Author : Team_dongguk(하헌우, 황호찬, 조규현)
+--%>
 <html>
     <head>
         <title> TeamName | Answer </title>
